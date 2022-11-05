@@ -1,0 +1,46 @@
+name: master
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Install dependencies
+      run: sudo apt-get install gettext p7zip dos2unix
+
+    - name: Create Release Folder
+      run: |
+        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='LICENSE' --exclude='README.md' . ./release
+
+    - name: Switch to Release Folder and Zip Folder
+      run: |
+        cd release
+        ls -la
+        7z a _ICN.7z -p${{ secrets.RELEASE_PASS }} -mhe -mx=9 -m0=lzma2 -mfb=64 -md=64m
+
+    - name: Upload artifacts
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v3
+      with:
+        name: icon-pack
+        path: release/*.7z
+        if-no-files-found: warn
+
+    - name: Deploy pre-release
+      uses: softprops/action-gh-release@v1
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+      with:
+        token: "${{ secrets.GITHUB_TOKEN }}"
+        fail_on_unmatched_files: true
+        files: |
+          release/_ICN.7z
+        tag_name: "Latest"
+        prerelease: false
