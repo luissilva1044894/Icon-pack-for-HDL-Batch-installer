@@ -24,7 +24,7 @@ jobs:
       run: |
         cd release
         ls -la
-        7z a _ICN.7z -p${{ secrets.RELEASE_PASS }} -mhe -mx=9 -m0=lzma2 -mfb=64 -md=64m
+        7z a icon_pack.7z -p${{ secrets.RELEASE_PASS }} -mhe -mx=9 -m0=lzma2 -mfb=64 -md=64m
 
     - name: Upload artifacts
       if: ${{ success() }}
@@ -41,6 +41,6 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         fail_on_unmatched_files: true
         files: |
-          release/_ICN.7z
+          release/icon_pack.7z
         tag_name: "Latest"
         prerelease: false
