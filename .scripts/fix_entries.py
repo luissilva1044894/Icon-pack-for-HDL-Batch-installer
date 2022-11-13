@@ -2,7 +2,7 @@
 games = [
 ]
 exc = ''
-with open('Icons.ini', 'r') as f:
+with open('../Icons.ini', 'r') as f:
   for line in f.readlines():
     if line.startswith('[') and line.endswith(']\n') or line.startswith('#'):
       continue
