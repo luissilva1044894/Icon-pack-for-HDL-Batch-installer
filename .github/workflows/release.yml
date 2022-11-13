@@ -14,7 +14,10 @@ jobs:
         fetch-depth: 0
 
     - name: Check DB entries
-      run: python ../fix_entries.py
+      run:: |
+        cd .scripts
+        python fix_entries.py
+        cd..
 
     - name: Install dependencies
       run: sudo apt-get install gettext p7zip dos2unix
