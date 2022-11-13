@@ -3,17 +3,20 @@ games = [
 ]
 exc = ''
 with open('Icons.ini', 'r') as f:
-  for l in f.readlines():
-    if '[ICONS]' in l or '#' in l:
+  for line in f.readlines():
+    if line.startswith('[') and line.endswith(']\n') or line.startswith('#'):
       continue
-    elif '.ico' not in l or '=' not in l or ' ' in l:
-      exc += f'Error: {l}\r\n'
+    elif '.ico' not in line:
+      exc += f'Missing .ico: {line}\r\n'
+    elif '=' not in line:
+      exc += f'Missing equal (=): {line}\r\n'
+    elif ' ' in line or ';' in line:
+      exc += f'Wrong symbol: {line}\r\n'
     else:
-      x = l.split('=')[0]
-      if x in games:
-        exc += f'Duplicated: {x}\r\n'
+      game = line.split('=')[0]
+      if game in games:
+        exc += f'Already listed: {line}\r\n'
       else:
-        games.append(x)
+        games.append(game)
 if exc:
   raise Exception(exc)
-print('OK!')
