@@ -21,7 +21,7 @@ jobs:
 
     - name: Create Release Folder
       run: |
-        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='fix_entries.py' --exclude='LICENSE' --exclude='README.md' . ./release
+        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='*.py' --exclude='LICENSE' --exclude='README.md' . ./release
 
     - name: Switch to Release Folder and Zip Folder
       run: |
