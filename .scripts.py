@@ -1,22 +1,34 @@
 
-games = [
+import os
+from os.path import (
+  abspath,
+  dirname,
+  join,
+  isfile,
+)
+
+GAMES = [
 ]
-exc = ''
+EXC = ''
+ICONS_FOLDER = join(abspath(dirname(__file__)), 'ICNS')
 with open('./Icons.ini', 'r') as f:
   for line in f.readlines():
     if line.startswith('[') and line.endswith(']\n') or line.startswith('#'):
       continue
     elif '.ico' not in line:
-      exc += f'Missing .ico: {line}\r\n'
+      EXC += f'Missing .ico: {line}\r\n'
     elif '=' not in line:
-      exc += f'Missing equal (=): {line}\r\n'
+      EXC += f'Missing equal (=): {line}\r\n'
     elif ' ' in line or ';' in line:
-      exc += f'Wrong symbol: {line}\r\n'
+      EXC += f'Wrong symbol: {line}\r\n'
     else:
-      game = line.split('=')[0]
-      if game in games:
-        exc += f'Already listed: {line}\r\n'
+      game, ico = line.split('=', 1)
+      if game in GAMES:
+        EXC += f'Already listed: {line}\r\n'
       else:
-        games.append(game)
-if exc:
-  raise Exception(exc)
+        ico_path = join(ICONS_FOLDER, ico.replace('\n', ''))
+        if not isfile(ico_path) or not os.access(ico_path, os.R_OK):
+          EXC += f'.ico not found: {ico}\r\n'
+        GAMES.append(game)
+if EXC:
+  raise Exception(EXC)
