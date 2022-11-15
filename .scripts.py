@@ -38,3 +38,4 @@ with open('./Icons.ini', 'r') as f:
         GAMES.append(game)
 if EXC:
   raise Exception(EXC)
+print('Everything is Ok!')
