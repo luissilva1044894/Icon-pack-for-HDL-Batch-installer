@@ -21,13 +21,13 @@ jobs:
 
     - name: Create Release Folder
       run: |
-        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='*.py' --exclude='LICENSE' --exclude='*.md' . ./{{ secrets.RELEASE_FOLDER }}
+        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='*.py' --exclude='LICENSE' --exclude='*.md' . ./release
 
     - name: Switch to Release Folder and Zip Folder
       run: |
-        cd {{ secrets.RELEASE_FOLDER }}
+        cd release
         ls -la
-        7z a {{ secrets.ZIP_NAME }}{{ secrets.ZIP_EXTENSION }} -p${{ secrets.ZIP_PASSWORD }} {{ secrets.ZIP_OPTIONS }}
+        7z a icon_pack.7z -p${{ secrets.ZIP_PASSWORD }} -mhe -mx=9 -m0=lzma2 -mfb=64 -md=64m
 
     - name: Upload artifacts
       if: ${{ success() }}
