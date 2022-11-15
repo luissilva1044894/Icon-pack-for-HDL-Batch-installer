@@ -21,20 +21,20 @@ jobs:
 
     - name: Create Release Folder
       run: |
-        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='*.py' --exclude='LICENSE' --exclude='README.md' . ./release
+        rsync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitattributes' --exclude='.gitignore' --exclude='*.py' --exclude='LICENSE' --exclude='*.md' . ./{{ secrets.RELEASE_FOLDER }}
 
     - name: Switch to Release Folder and Zip Folder
       run: |
-        cd release
+        cd {{ secrets.RELEASE_FOLDER }}
         ls -la
-        7z a icon_pack.7z -p${{ secrets.RELEASE_PASS }} -mhe -mx=9 -m0=lzma2 -mfb=64 -md=64m
+        7z a {{ secrets.ZIP_NAME }}{{ secrets.ZIP_EXTENSION }} -p${{ secrets.ZIP_PASSWORD }} {{ secrets.RELEASE_ZIP_OPTIONS }}
 
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v3
       with:
         name: icon-pack
-        path: release/*.7z
+        path: {{ secrets.RELEASE_FOLDER }}/*{{ secrets.ZIP_EXTENSION }}
         if-no-files-found: warn
 
     - name: Deploy pre-release
@@ -44,6 +44,6 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         fail_on_unmatched_files: true
         files: |
-          release/icon_pack.7z
+          {{ secrets.RELEASE_FOLDER }}/{{ secrets.ZIP_NAME }}{{ secrets.ZIP_EXTENSION }}
         tag_name: "Latest"
         prerelease: false
