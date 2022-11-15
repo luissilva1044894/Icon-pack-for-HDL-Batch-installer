@@ -6,7 +6,7 @@ Build with:
  * [mymc][MYMC] & [mymc+][MYMCPLUS]
  * [PS2 SaveBuilder][PS2_SAVE_BUILDER]
 
-### License
+### <pre>License</pre>
 This is an open source [![Open Source](https://raw.githubusercontent.com/abhishekbanthia/Public-APIs/master/opensource.png)](https://www.opensource.org "See http://www.opensource.org for the Open Source Definition") project provided under the MIT License, which can be found in the [`LICENSE file`][LICENSE].
 
 #### <pre>External Links</pre>
