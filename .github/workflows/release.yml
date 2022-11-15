@@ -27,14 +27,14 @@ jobs:
       run: |
         cd {{ secrets.RELEASE_FOLDER }}
         ls -la
-        7z a {{ secrets.ZIP_NAME }}{{ secrets.ZIP_EXTENSION }} -p${{ secrets.ZIP_PASSWORD }} {{ secrets.RELEASE_ZIP_OPTIONS }}
+        7z a {{ secrets.ZIP_NAME }}{{ secrets.ZIP_EXTENSION }} -p${{ secrets.ZIP_PASSWORD }} {{ secrets.ZIP_OPTIONS }}
 
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v3
       with:
         name: icon-pack
-        path: {{ secrets.RELEASE_FOLDER }}/*{{ secrets.ZIP_EXTENSION }}
+        path: release/*.7z
         if-no-files-found: warn
 
     - name: Deploy pre-release
@@ -44,6 +44,6 @@ jobs:
         token: "${{ secrets.GITHUB_TOKEN }}"
         fail_on_unmatched_files: true
         files: |
-          {{ secrets.RELEASE_FOLDER }}/{{ secrets.ZIP_NAME }}{{ secrets.ZIP_EXTENSION }}
+          release/*.7z
         tag_name: "Latest"
         prerelease: false
