@@ -1,7 +1,7 @@
 # HDDOSD icon pack for Playstation 2 FAT
 
 Build with:
- * [GameFaqs][GAMEFAQS_PS2]
+ * [GameFaqs][GAMEFAQS_PS2], [Redump.org][REDUMP_PS2] & [SerialStation][SERIAL_STATION_PS2] 
  * [PCSX2][PCSX2], [SCPH-55000 GT][PS2_SCPH_55000_GT] & [SCPH-79010CB][PS2_SCPH_79000]
  * [mymc][MYMC] & [mymc+][MYMCPLUS]
  * [PS2 SaveBuilder][PS2_SAVE_BUILDER]
@@ -25,6 +25,8 @@ This is an open source [![Open Source](https://raw.githubusercontent.com/abhishe
 [PS2_SCPH_55000_GT]: https://maru-chang.com/hard/scph/index.php/all/english/#SCPH-55000 "PlayStation 2 Racing Pack · SCPH-55000 GT"
 [PS2_SCPH_79000]: https://maru-chang.com/hard/scph/index.php/all/english/#SCPH-79000 "PlayStation 2 Slim · SCPH-79000"
 [PS2_SAVE_BUILDER]: https://www.ps2savetools.com/download/ps2-save-builder "PS2 SaveBuilder"
+[REDUMP_PS2]: http://redump.org/discs/system/ps2/ "Redump.org · PS2 Games"
+[SERIAL_STATION_PS2]: https://serialstation.com/titles/?systems=b88ad131-ac80-458e-81a1-33ec9e75ea8a "SerialStation · PS2 Games"
 [SORT_LIST_ONLINE]: https://pinetools.com/sort-list "Sort list online"
 [WIKIPEDIA_PS2_LIST_A_K]: https://en.wikipedia.org/wiki/List_of_PlayStation_2_games_(A%E2%80%93K) "List of PlayStation 2 games (A–K)"
 [WIKIPEDIA_PS2_LIST_L_Z]: https://en.wikipedia.org/wiki/List_of_PlayStation_2_games_(L%E2%80%93Z) "List of PlayStation 2 games (L–Z)"
