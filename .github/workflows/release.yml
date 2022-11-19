@@ -1,4 +1,5 @@
 name: master
+
 on:
   push:
     branches:
@@ -17,7 +18,7 @@ jobs:
       run: python .scripts.py
 
     - name: Install dependencies
-      run: sudo apt-get install gettext p7zip dos2unix
+      run: sudo apt-get install p7zip
 
     - name: Create Release Folder
       run: |
