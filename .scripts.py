@@ -27,7 +27,7 @@ with open('./Icons.ini', 'r') as f:
     else:
       game, ico = line.split('=', 1)
       #Ignore weird id
-      if 'ARP2_012.01' not in game and TITLE_ID_RE.match(game) is None and DEV_ID_RE.match(game) is None:
+      if 'ARP2_012.01' not in game and 'KOEI_SP0.02' not in game and TITLE_ID_RE.match(game) is None and DEV_ID_RE.match(game) is None:
         EXC += f'Wrong Title ID: {line}\r\n'
       elif game in GAMES:
         EXC += f'Already listed: {line}\r\n'
