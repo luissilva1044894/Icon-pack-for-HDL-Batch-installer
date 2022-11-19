@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - '**.ico'
+      - '**.ini'
+      - '**.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
